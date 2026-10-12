@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="same-origin">
+  <title>Управление магазином — Lestial</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="config.js" defer></script>
+  <script src="api.js" defer></script>
+  <script src="admin.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="logo" href="index.html">LESTIAL<span>УПРАВЛЕНИЕ МАГАЗИНОМ</span></a>
+    <a class="back-link" href="index.html">Открыть каталог ↗</a>
+  </header>
+  <main>
+    <section id="loginPanel" class="login-panel">
+      <p class="eyebrow">ДЛЯ ВЛАДЕЛИЦЫ МАГАЗИНА</p>
+      <h1>С возвращением</h1>
+      <p class="muted">Войдите, чтобы обновить коллекцию Lestial.</p>
+      <div id="setupNotice" class="notice" hidden>
+        <strong>Осталось подключить магазин</strong>
+        <p>Панель подготовлена. Чтобы вход и сохранение заработали, выполните шаги из файла «НАСТРОЙКА.md» в папке Lestial.</p>
+      </div>
+      <form id="loginForm">
+        <label for="email">Электронная почта</label>
+        <input id="email" name="email" type="email" autocomplete="username" placeholder="name@example.com" required maxlength="254">
+        <label for="password">Пароль</label>
+        <div class="password-field">
+          <input id="password" name="password" type="password" autocomplete="current-password" required maxlength="128">
+          <button type="button" id="showPassword" class="text-button" aria-controls="password" aria-pressed="false">Показать</button>
+        </div>
+        <p id="loginMessage" class="message" role="alert"></p>
+        <button id="loginButton" class="button primary full" type="submit">Войти в аккаунт</button>
+      </form>
+      <p class="footnote">Доступ есть только у назначенного администратора.</p>
+    </section>
+    <section id="dashboard" hidden>
+      <div class="dashboard-heading">
+        <div><p class="eyebrow">ВАША КОЛЛЕКЦИЯ</p><h1>Товары <span id="count" class="count">0</span></h1><p id="account" class="muted"></p></div>
+        <button id="logout" class="button secondary" type="button">Выйти</button>
+      </div>
+      <p id="status" class="message" role="status" aria-live="polite"></p>
+      <div class="toolbar">
+        <label class="search-label" for="search">Поиск по названию или бренду<input id="search" type="search" placeholder="Найти товар…"></label>
+        <button id="refresh" class="button secondary" type="button">Обновить список</button>
+        <button id="addProduct" class="button primary" type="button">+ Добавить товар</button>
+      </div>
+      <p class="muted list-hint">Откройте товар, чтобы изменить фото, цену или описание.</p>
+      <div id="productList" class="admin-grid"></div>
+      <p id="empty" class="empty" hidden>Товары не найдены.</p>
+    </section>
+  </main>
+  <dialog id="editor" aria-labelledby="editorTitle">
+    <form id="productForm">
+      <div class="editor-heading"><div><p class="eyebrow">LESTIAL COLLECTION</p><h2 id="editorTitle">Новый товар</h2></div><button id="closeEditor" type="button" class="icon-button" aria-label="Закрыть">×</button></div>
+      <fieldset id="editorFields">
+        <div class="editor-layout">
+          <div class="photo-column">
+            <div class="photo-preview"><img id="photoPreview" alt="Предпросмотр фотографии" hidden><span id="photoPlaceholder">Фотография товара</span></div>
+            <label class="photo-label" for="photo">Выбрать фото</label>
+            <input id="photo" type="file" accept="image/jpeg,image/png,image/webp">
+            <p class="footnote">JPG, PNG или WebP до 15 МБ. Фото будет уменьшено для быстрой загрузки.</p>
+            <p id="photoMessage" class="message" role="status"></p>
+          </div>
+          <div class="fields-column">
+            <label for="title">Название <span aria-hidden="true">*</span></label>
+            <input id="title" required maxlength="200" placeholder="Например, увлажняющий крем, 50 мл">
+            <label for="brand">Бренд</label><input id="brand" maxlength="100" placeholder="Например, DR. ALTHEA">
+            <label for="price">Цена, ₸ <span aria-hidden="true">*</span></label><input id="price" type="number" inputmode="decimal" required min="0" max="100000000" step="0.01" placeholder="5 200">
+            <label for="description">Описание</label><textarea id="description" maxlength="5000" rows="6" placeholder="О товаре, составе и способе применения"></textarea>
+            <p class="footnote">Описание появится в окне товара в каталоге.</p>
+          </div>
+        </div>
+      </fieldset>
+      <p id="saveMessage" class="message" role="alert"></p>
+      <div class="editor-footer"><button id="cancelEditor" class="button secondary" type="button">Отмена</button><button id="saveProduct" class="button primary" type="submit">Сохранить товар</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

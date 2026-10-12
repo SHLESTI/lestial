@@ -513,3 +513,11 @@ body {
     }
 
 }
+/* Admin integration */
+[hidden] { display: none !important; }
+.modal-description { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 14px; line-height: 1.7; color: #6d6862; margin-bottom: 25px; }
+.modal-description:empty { display: none; }
+.product-card:focus-visible, .modal-close:focus-visible, .modal-order:focus-visible { outline: 3px solid #63705c; outline-offset: 4px; }
+.catalog-notice { max-width: 1200px; margin: 0 auto 24px; padding: 16px; background: #eeeae4; line-height: 1.6; }
+.site-footer { border-top: 1px solid #ded9d1; text-align: center; padding: 24px; }
+.site-footer a { font-size: 12px; color: #6d6862; text-underline-offset: 4px; }

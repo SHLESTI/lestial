@@ -60,6 +60,7 @@
         <p>Уходовая и декоративная косметика</p>
     </div>
 
+<p id="catalogNotice" class="catalog-notice" role="status" hidden></p>
 <div class="product-grid">
 
     <!-- 1 -->
@@ -361,13 +362,13 @@
 
     <a href="https://www.instagram.com/lestial.kz"
        class="contact-button"
-       target="_blank">
+       target="_blank" rel="noopener noreferrer">
         Instagram
     </a>
 
     <a href="https://wa.me/77756990198"
        class="contact-button"
-       target="_blank">
+       target="_blank" rel="noopener noreferrer">
         WhatsApp
     </a>
 
@@ -377,11 +378,11 @@
 
 </section>
 
-<div class="product-modal" id="productModal">
+<div class="product-modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
 
     <div class="product-modal-content">
 
-        <button class="modal-close" id="modalClose">×</button>
+        <button class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
 
         <img id="modalImage" src="" alt="">
 
@@ -390,11 +391,12 @@
         <h2 id="modalTitle"></h2>
 
         <p class="modal-price" id="modalPrice"></p>
+        <p class="modal-description" id="modalDescription"></p>
 
         <a id="modalOrder"
            class="modal-order"
            href="#"
-           target="_blank">
+           target="_blank" rel="noopener noreferrer">
             Заказать
         </a>
 
@@ -402,176 +404,11 @@
 
 </div>
 
-<script>
-    const products = [
-        {
-            brand: "EVELINE",
-            title: "Гиалуроновая мицеллярная вода Facemed+ 3в1, 400 мл",
-            price: "1 800 ₸",
-            image: "images/giaulirone.jpeg"
-        },
-        {
-            brand: "EVELINE",
-            title: "Очищающая мицеллярная вода Facemed+ 3в1, 400 мл",
-            price: "1 800 ₸",
-            image: "images/cleaner.jpeg"
-        },
-        {
-            brand: "ECOLATIER",
-            title: "Мицеллярная вода Чай, Матча & Бамбук",
-            price: "1 500 ₸",
-            image: "images/urban.jpeg"
-        },
-        {
-            brand: "NORA FLOWERS",
-            title: "Книжка-набор декоративной косметики 4в1",
-            price: "2 500 ₸",
-            image: "images/nora-flowers.jpeg"
-        },
-        {
-            brand: "URATM",
-            title: "Книжка-набор декоративной косметики",
-            price: "2 500 ₸",
-            image: "images/uratm.jpeg"
-        },
-        {
-            brand: "DR. ALTHEA",
-            title: "Aqua Marine Watery Cream — увлажняющий крем для лица",
-            price: "5 200 ₸",
-            image: "images/dr.althea.jpeg"
-        },
-        {
-            brand: "MIPPEUM",
-            title: "Collagen Mix Package, 3200 мг",
-            price: "15 000 ₸",
-            image: "images/collagen.jpeg"
-        },
-        {
-            brand: "LONGRICH",
-            title: "Антиперспирант с коллагеном Dew",
-            price: "3 000 ₸",
-            image: "images/antiperspirant.jpeg"
-        },
-        {
-            brand: "LESTIAL",
-            title: "Клей для ресниц",
-            price: "150 ₸",
-            image: "images/clue.jpeg"
-        },
-                {
-            brand: "ROUND LAB",
-            title: "Пенка для умывания с морской водой 1025 Dokdo, 150 мл",
-            price: "4 500 ₸",
-            image: "images/dokdo.jpeg"
-        },
-        {
-            brand: "DR. ALTHEA",
-            title: "Мягкий гидрофильный бальзам (щербет) Pure Grinding Cleansing Balm, 50 мл",
-            price: "5 500 ₸",
-            image: "images/dr.althea-balm.jpeg"
-        },
-        {
-            brand: "LAGOM",
-            title: "Отшелушивающая глиняная маска для лица White Koalin Mud Mask, 110 мл",
-            price: "7 000 ₸",
-            image: "images/lagom-mask.jpeg"
-        },
-        {
-            brand: "ROUND LAB",
-            title: "Пенка для умывания Birch Juice, 150 мл",
-            price: "4 500 ₸",
-            image: "images/birch-juice.jpeg"
-        },
-        {
-            brand: "BEAUTY OF JOSEON",
-            title: "Relief Sun Aqua-fresh Rice+B5 SPF50+ PA++++, 50 мл",
-            price: "5 000 ₸",
-            image: "images/spf-joseon.jpeg"
-        },
-        {
-            brand: "POM7",
-            title: "Smart Hybrid BB Cream SPF36 PA, 50 мл",
-            price: "8 000 ₸",
-            image: "images/bbcream.jpeg"
-        },
-        {
-            brand: "COMPLIMENT",
-            title: "Гиалуроновый спрей-фиксатор для лица Fix&Glow, 110 мл",
-            price: "2 000 ₸",
-            image: "images/giaulirone-comp.jpeg"
-        },
-        {
-            brand: "LUXVISAGE",
-            title: "Гель-ламиниатор для бровей Laminator Extreme Fix",
-            price: "2 000 ₸",
-            image: "images/laminator-lux.jpeg"
-        },
-        {
-            brand: "LUXVISAGE",
-            title: "Тональный CC-крем Active Complex SPF10, тон 20, 35 г",
-            price: "2 500 ₸",
-            image: "images/tonal-cream.jpeg"
-        },
-        {
-            brand: "LESTIAL",
-            title: "Жидкий хлорофилл из арктических водорослей",
-            price: "18 000 ₸",
-            image: "images/chlorofill.jpeg"
-        }
-    ];
+<script src="config.js" defer></script>
+<script src="api.js" defer></script>
+<script src="catalog.js" defer></script>
 
-    const productCards = document.querySelectorAll(".product-card");
-
-    const productModal = document.getElementById("productModal");
-    const modalClose = document.getElementById("modalClose");
-
-    const modalImage = document.getElementById("modalImage");
-    const modalBrand = document.getElementById("modalBrand");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalPrice = document.getElementById("modalPrice");
-    const modalOrder = document.getElementById("modalOrder");
-
-
-    productCards.forEach((card, index) => {
-
-        card.addEventListener("click", () => {
-
-            const product = products[index];
-
-            modalImage.src = product.image;
-            modalImage.alt = product.title;
-
-            modalBrand.textContent = product.brand;
-            modalTitle.textContent = product.title;
-            modalPrice.textContent = product.price;
-
-            const message =
-                `Здравствуйте! Хочу заказать: ${product.title} — ${product.price}`;
-
-            modalOrder.href =
-                `https://wa.me/77756990198?text=${encodeURIComponent(message)}`;
-
-            productModal.style.display = "flex";
-
-        });
-
-    });
-
-
-    modalClose.addEventListener("click", () => {
-        productModal.style.display = "none";
-    });
-
-
-    productModal.addEventListener("click", (event) => {
-
-        if (event.target === productModal) {
-            productModal.style.display = "none";
-        }
-
-    });
-</script>
-
+<footer class="site-footer"><a href="admin.html">Вход администратора</a></footer>
 </body>
 
 </html>
